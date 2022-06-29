@@ -1,5 +1,11 @@
 package us.milessmiles.extend.milespay.transaction.model
 
+import java.time.ZonedDateTime
+import java.util.*
+
 data class TransactionResponse (
-    val merchantName: String?
+    var merchantName: String?,
+    var amount: String?,
+    var status: String?,
+    var timestamp: Date?,
 )

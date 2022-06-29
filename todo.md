@@ -1,11 +1,14 @@
 # Todo
-- Filtering transactions
+- Filtering transactions and cards
+- Paging transactions and cards
 - Logging - especially exceptions
 - Configurations - review configurable settings
 - Docs - swagger on the controller
-- Simple UI - login, view/select card, view transations
-- Tests - integration tests with mocked webclient
+- Tests - integration tests with mocked webclient, service tests
 - Exception Handling - need an @ExceptionHandler for custom format
+- Custom exceptions with appropriate messages and status codes
 - README - notes for building and usage
-- Validations - how does kotlin use spring validations
-- renewauth endpoint
+- Validations - input validation, etc
+- renewauth endpoint implmentation
+- Remove cors configuration, use proxy for frontend (prod can be served from the same port)
+- API served from /api, frontend served from /

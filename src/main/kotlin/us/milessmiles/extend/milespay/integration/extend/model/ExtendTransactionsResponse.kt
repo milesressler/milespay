@@ -17,6 +17,8 @@ data class ExtendTransaction(
     val updatedAt: String?,
 ) {
     fun convert(): TransactionResponse {
-        return TransactionResponse(merchantName=merchantName)
+        return TransactionResponse(merchantName=merchantName, amount = null, status=null, timestamp = null)
     }
 }
+
+

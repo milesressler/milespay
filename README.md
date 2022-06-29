@@ -1,12 +1,24 @@
+# Miles Pay
+ 
+Miles Pay is a simplified application for interfacing with Extend for virtual cards
+
+
+[https://developer.paywithextend.com/#extend-api](https://developer.paywithextend.com/#extend-api)
+
+### Backend
+- Build for docker:
+
+   `./gradlew bootJar`
+
 ### Frontend
 - Install dependencies
 
-   `gradle npmInstall`
+   `./gradlew npmInstall`
 
 
 - Copy to static directory in project
 
-   `gradle appNpmBuild`
+   `./gradlew appNpmBuild`
 
 
 ### Docker

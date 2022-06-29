@@ -10,10 +10,10 @@ import us.milessmiles.extend.milespay.integration.common.ExternalCardService
 class DefaultCardService: CardService {
 
     @Autowired
-    lateinit var externalAuthenticationService: ExternalCardService
+    lateinit var externalCardService: ExternalCardService
 
     override fun getVirtualCards(authorization: String, pageNumber: Int?, pageSize: Int?): Page<VirtualCardResponse> {
-        return externalAuthenticationService.getVirtualCards(authorization)
+        return externalCardService.getVirtualCards(authorization)
     }
 
 }

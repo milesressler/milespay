@@ -16,10 +16,7 @@ import us.milessmiles.extend.milespay.card.model.VirtualCardResponse
 import us.milessmiles.extend.milespay.common.model.Page
 import us.milessmiles.extend.milespay.integration.common.ExternalCardService
 import us.milessmiles.extend.milespay.integration.extend.config.ExtendUrl
-import us.milessmiles.extend.milespay.integration.extend.model.ExtendLoginRequest
-import us.milessmiles.extend.milespay.integration.extend.model.ExtendLoginResponse
-import us.milessmiles.extend.milespay.integration.extend.model.ExtendTransactionsResponse
-import us.milessmiles.extend.milespay.integration.extend.model.ExtendVirtualCardsResponse
+import us.milessmiles.extend.milespay.integration.extend.model.*
 import us.milessmiles.extend.milespay.transaction.model.TransactionResponse
 
 @Service
@@ -61,7 +58,7 @@ class ExtendCardService: ExternalCardService {
             .block()
 
         response?.let {
-            return Page(content = response.extendVirtualCards.map { it.convert() },
+            return Page(content = response.virtualCards.map { it.convert() },
                 page = response.pagination.page,
                 pageSize = response.pagination.pageItemCount,
                 total = response.pagination.totalItems)
@@ -71,16 +68,21 @@ class ExtendCardService: ExternalCardService {
     }
 
 
-    override fun getTransactions(token: String, card: String): List<TransactionResponse> {
+    override fun getTransactions(token: String, card: String): Page<TransactionResponse> {
+        val url = "${ExtendUrl.TRANSACTIONS_REPORT}?perPage=10&sort=-dateAuthsFirst&virtualCardId=${card}" +
+                "&status=${ExtendTransactionStatus.CLEARED}&status=${ExtendTransactionStatus.DECLINED}&status=${ExtendTransactionStatus.PENDING}"
         val response = webClient.get()
-            .uri(ExtendUrl.VIRTUAL_CARD_TRANSACTIONS, card)
+            .uri(url)
             .header("Authorization", token)
             .retrieve()
-            .bodyToMono(ExtendTransactionsResponse::class.java)
+            .bodyToMono(ExtendTransactionsReportResponse::class.java)
             .block()
 
         response?.let {
-            return response.transactions.map { it.convert() }
+            return Page(content = response.report.transactions.map { it.convert() },
+                page = response.report.page,
+                pageSize = response.report.perPage,
+                total = response.report.count)
         }
 
         throw Exception("Exception message")

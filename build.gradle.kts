@@ -49,8 +49,13 @@ tasks.register<NpmTask>("appNpmBuild") {
 	description = "Builds production version of the webapp"
 
 	environment.set(mapOf("BUILD_PATH" to "${project.projectDir}/src/main/resources/static"))
-//	outputs.dir("${buildDir}/npx-output")
 	args.set(listOf("run", "build"))
+}
+
+tasks.register<NpmTask>("appNpmServe") {
+	description = "Serves development version of the webapp"
+
+	args.set(listOf("run", "start"))
 }
 
 //task copyWebApp(type: Copy) {

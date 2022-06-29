@@ -6,7 +6,7 @@ import us.milessmiles.extend.milespay.card.model.VirtualCardResponse
  * Virtual cards response for Extend API
  */
 data class ExtendVirtualCardsResponse(
-    val extendVirtualCards: List<ExtendVirtualCard>,
+    val virtualCards: List<ExtendVirtualCard>,
     val pagination: ExtendPaginationResponse,
 )
 

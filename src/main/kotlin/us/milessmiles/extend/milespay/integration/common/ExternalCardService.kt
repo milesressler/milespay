@@ -8,6 +8,5 @@ import us.milessmiles.extend.milespay.transaction.model.TransactionResponse
 interface ExternalCardService {
     fun authenticate(username: String, password: String): AuthenticationResponse
     fun getVirtualCards(token: String): Page<VirtualCardResponse>
-//    fun getVirtualCard(token: String, id: String): VirtualCardResponse
-    fun getTransactions(token: String, card: String): List<TransactionResponse>
+    fun getTransactions(token: String, card: String): Page<TransactionResponse>
 }

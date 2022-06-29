@@ -9,10 +9,10 @@ import us.milessmiles.extend.milespay.integration.common.ExternalCardService
 class DefaultAuthenticationService: AuthenticationService {
 
     @Autowired
-    lateinit var externalAuthenticationService: ExternalCardService
+    lateinit var externalCardService: ExternalCardService
 
     override fun authenticate(username: String, password: String): AuthenticationResponse {
-        val authenticationResponse = externalAuthenticationService.authenticate(username, password)
+        val authenticationResponse = externalCardService.authenticate(username, password)
         authenticationResponse.displayName = listOfNotNull(
             authenticationResponse.firstName,
             authenticationResponse.lastName
