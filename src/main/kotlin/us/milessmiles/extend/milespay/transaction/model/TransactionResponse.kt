@@ -1,6 +1,5 @@
 package us.milessmiles.extend.milespay.transaction.model
 
-import java.time.ZonedDateTime
 import java.util.*
 
 data class TransactionResponse (

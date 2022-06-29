@@ -17,6 +17,7 @@ import us.milessmiles.extend.milespay.common.model.Page
 import us.milessmiles.extend.milespay.integration.common.ExternalCardService
 import us.milessmiles.extend.milespay.integration.extend.config.ExtendUrl
 import us.milessmiles.extend.milespay.integration.extend.model.*
+import us.milessmiles.extend.milespay.transaction.model.TransactionDetailResponse
 import us.milessmiles.extend.milespay.transaction.model.TransactionResponse
 
 @Service
@@ -86,7 +87,21 @@ class ExtendCardService: ExternalCardService {
         }
 
         throw Exception("Exception message")
+    }
 
+    override fun getTransaction(token: String, id: String): TransactionDetailResponse {
+        val response = webClient.get()
+            .uri(ExtendUrl.TRANSACTION,id)
+            .header("Authorization", token)
+            .retrieve()
+            .bodyToMono(ExtendTransactionResponse::class.java)
+            .block()
+
+        response?.let {
+            return response.convert()
+        }
+
+        throw Exception("Exception message")
     }
 
 

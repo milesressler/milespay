@@ -14,9 +14,10 @@ data class ExtendVirtualCard(
     val id: String,
     val status: String,
     val balanceCents: Long,
+    val creditCardDisplayName: String,
 ){
     fun convert(): VirtualCardResponse {
-        return VirtualCardResponse(id = this.id)
+        return VirtualCardResponse(id = this.id, balanceCents=balanceCents, name=creditCardDisplayName)
     }
 }
 

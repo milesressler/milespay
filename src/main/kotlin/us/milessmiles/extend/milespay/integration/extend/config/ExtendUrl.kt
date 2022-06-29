@@ -5,4 +5,5 @@ object ExtendUrl {
     const val VIRTUAL_CARDS = "virtualcards"
     const val VIRTUAL_CARD_TRANSACTIONS = "virtualcards/{}/transactions"
     const val TRANSACTIONS_REPORT = "reports/transactions"
+    const val TRANSACTION = "transactions/{}"
 }

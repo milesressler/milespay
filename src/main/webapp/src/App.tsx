@@ -6,6 +6,8 @@ import {Form} from "react-bootstrap";
 
 interface Card {
   id?: string
+  name?: string
+  balanceCents: number
 }
 
 interface Transaction {
@@ -112,7 +114,7 @@ function App() {
                 cardPage?.content.map(card =>
                     <div onClick={() => setSelectedCard(card)} style={{padding: '5px'}}>
                       <span style={{backgroundColor: selectedCard?.id === card.id ? '#A00' : 'none'}}>
-                        {card.id}
+                        {card.name} - {card.id} (${card.balanceCents/100})
                       </span>
                     </div>)
               }
